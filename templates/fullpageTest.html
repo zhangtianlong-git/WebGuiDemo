@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CesiumUnminified/jquery.fullPage.css">
+    <link rel="stylesheet" href="../CesiumUnminified/main.css">
+    <script src="../CesiumUnminified/echarts.min.js"></script>
+    <script src="../CesiumUnminified/echarts-gl.min.js"></script>
+    <script src="../CesiumUnminified/china.js"></script>
+    <script src="../CesiumUnminified/jquery.min.js"></script>
+    <script src="../CesiumUnminified/jquery.fullPage.min.js"></script>
+    <script src="../CesiumUnminified/mypage.js"></script>
+    <script src="../CesiumUnminified/jsofpage1.js"></script>
+    <title>WEB测试主页</title>
+</head>
+<body>
+    <div class="fullpage">
+        <div class="section">
+            <div id='title'>数据可视化展示Demo</div>
+            <div id="tim">Waiting for time INFO from server!</div>
+            <div id="r1"></div>
+            <script src="../CesiumUnminified/r1js.js"></script>
+            <div id="r2"></div>
+            <script src="../CesiumUnminified/r2js.js"></script>
+            <div id='c1'>
+                <p></p>
+                <p></p>
+                <input id='i1' class="myinput" type="text">
+                <input id='i2' class="myinput" type="text">
+                <input id='i3' class="myinput" type="text">
+                <button class="enjoy-css" onclick="add2()">GetSumFromSever</button>
+                <h1 id="sum_res"></h1>
+            </div>
+            <style type="text/css">
+                #c1{
+                    line-height:50px;
+                    text-align: center;
+                    align-items: center;
+                }
+            </style>
+            <div id='c2'></div>
+            <script src="../CesiumUnminified/cMap.js"></script>
+            <div id="l1"></div>
+            <script src="../CesiumUnminified/l1js.js"></script>
+            <div id="l2"></div>
+            <script src="../CesiumUnminified/map3d.js"></script>
+        </div>
+        <div class="section landing-page">
+            <div class="page-content">
+                <h1>三维地图及模型展示Demo</h1>
+                <p>
+                    利用WEBGL深度开发，引入开源Cesium模块，实现三维数字地球与实景三维模型融合的展示方法。
+                </p>
+                <form action="/earth" method="get" id="loginForm">
+                    <a href="#" onclick="document:loginForm.submit()">Get Started</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

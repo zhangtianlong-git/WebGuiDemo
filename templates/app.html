@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../CesiumUnminified/Widgets/widgets.css">
+    <script src="../CesiumUnminified/Cesium.js"></script>
+    <script src="../CesiumUnminified/jquery.min.js"></script>
+    <script src="../CesiumUnminified/jquery.fullPage.min.js"></script>
+    <script src="../CesiumUnminified/mypage.js"></script>
+    <link rel="stylesheet" href="../CesiumUnminified/jquery.fullPage.css">
+    <title>三维模型漫游</title>
+</head>
+<body>
+    <div id="CesiumApp"></div>
+    <script>
+        Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3N2YzZTVhNS1hM2FjLTQwN2MtODM0ZC0yZTJmODUyNzVmYzgiLCJpZCI6NzIwOTQsImlhdCI6MTYzNTc5MDEzNn0.FS-zL47QRWojnRuWJI85HQ-yQXjdcXHluRkOqKDv_Zo';
+        var viewer = new Cesium.Viewer("CesiumApp", {
+                geocoder: false,
+                homeButton: false,
+                sceneModePicker: false, //是否显示投影方式控件
+                baseLayerPicker: true,  //是否显示图层选择控件
+                navigationHelpButton: false, //是否显示帮助信息控件
+                geocoder:true, //是否显示地名查找控件
+                animation: false, //是否显示动画控件
+                timeline: false, //是否显示时间线控件
+                fullscreenButton: false,
+                vrButton: false,
+                shadows: true, //影子
+                infoBox: false //是否显示点击要素之后显示的信息
+            });
+        viewer.baseLayerPicker.viewModel.selectedImagery = viewer.baseLayerPicker.viewModel.imageryProviderViewModels[5];
+        viewer.camera.setView({
+            destination:Cesium.Cartesian3.fromDegrees(104.20, 34.55, 30000000)
+        });
+        var city = viewer.scene.primitives.add(new Cesium.Cesium3DTileset({
+            url: '../CesiumUnminified/convertData/tileset.json'
+        }));
+        var heightOffset = -400;
+        city.readyPromise.then(function(tileset) {
+            // Position tileset
+            var boundingSphere = tileset.boundingSphere;
+            var cartographic = Cesium.Cartographic.fromCartesian(boundingSphere.center);
+            var surface = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, 0.0);
+            var offset = Cesium.Cartesian3.fromRadians(cartographic.longitude, cartographic.latitude, heightOffset);
+            var translation = Cesium.Cartesian3.subtract(offset, surface, new Cesium.Cartesian3());
+            tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
+        });
+    </script>
+</body>
+</html>

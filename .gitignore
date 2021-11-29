@@ -1,0 +1,8 @@
+/venv/
+/__pycache__/
+/CesiumUnminified/convertData/
+/CesiumUnminified/Assets/
+/CesiumUnminified/Scene/
+/CesiumUnminified/ThirdParty/
+/CesiumUnminified/Widgets/
+/CesiumUnminified/Workers/
